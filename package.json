@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/react-checkbox": "^0.15.0",
+    "@material/react-list": "^0.15.0",
+    "@material/react-menu": "^0.15.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-sortable-tree": "^2.7.1",
+    "react-sortable-tree-theme-minimal": "^0.0.14"
   },
   "scripts": {
     "start": "react-scripts start",

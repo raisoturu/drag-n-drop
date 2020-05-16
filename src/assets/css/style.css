@@ -1,0 +1,65 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css");
+.App {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.tree {
+  width: 800px;
+  height: 100%;
+  background-color: white;
+}
+
+/* custom tree style */
+
+.rstcustom__rowContents {
+  background-color: unset;
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+}
+.rstcustom__rowContents:hover {
+  -webkit-box-shadow: unset;
+  box-shadow: unset;
+}
+.rstcustom__node,
+.rstcustom__nodeContent {
+  width: 100%;
+}
+.rstcustom__rowTitleWithSubtitle {
+  color: rgb(160, 160, 160);
+  display: inline;
+}
+.rstcustom__rowSubtitle {
+  margin-left: 1em;
+  font-size: unset;
+  line-height: unset;
+  overflow: unset;
+}
+.rstcustom__expandButton:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f054";
+}
+.rstcustom__collapseButton:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f078";
+}
+.btn-dropdown {
+  border: none;
+  outline: none;
+  background-color: unset;
+}
+.btn-dropdown:hover {
+  color: rgb(128, 128, 128);
+}
+.counter-badge {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(107, 159, 255);
+  border-radius: 2px;
+  padding: 5px;
+  margin-right: 0.7em;
+}
