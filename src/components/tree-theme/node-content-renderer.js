@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styles from './node-content-renderer.scss';
-
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./node-content-renderer.scss";
+import Checkbox from "@material/react-checkbox";
+import "@material/react-checkbox/dist/checkbox.css";
 function isDescendant(older, younger) {
   return (
     !!older.children &&
-    typeof older.children !== 'function' &&
+    typeof older.children !== "function" &&
     older.children.some(
-      child => child === younger || isDescendant(child, younger)
+      (child) => child === younger || isDescendant(child, younger)
     )
   );
 }
 
 // eslint-disable-next-line react/prefer-stateless-function
 class MinimalThemeNodeContentRenderer extends Component {
+  state = { checked: false, indeterminate: false };
   render() {
     const {
       scaffoldBlockPxWidth,
@@ -50,22 +52,22 @@ class MinimalThemeNodeContentRenderer extends Component {
 
     const isDraggedDescendant = draggedNode && isDescendant(draggedNode, node);
     const isLandingPadActive = !didDrop && isDragging;
-    const nodeContent = connectDragPreview( <div
+    const nodeContent = connectDragPreview(
+      <div
         className={
-          styles.rowContents +
-          (isSearchMatch ? ` ${styles.rowSearchMatch}` : '') +
-          (isSearchFocus ? ` ${styles.rowSearchFocus}` : '') +
-          (!canDrag ? ` ${styles.rowContentsDragDisabled}` : '')
+          "rowContents" +
+          (isSearchMatch ? `rowSearchMatch` : "") +
+          (isSearchFocus ? `rowSearchFocus` : "") +
+          (!canDrag ? `rowContentsDragDisabled` : "")
         }
       >
-        <div className={styles.rowLabel}>
+        <div className={"rowLabel"}>
           <span
             className={
-              styles.rowTitle +
-              (node.subtitle ? ` ${styles.rowTitleWithSubtitle}` : '')
+              "rowTitle" + (node.subtitle ? ` ${"rowTitleWithSubtitle"}` : "")
             }
           >
-            {typeof nodeTitle === 'function'
+            {typeof nodeTitle === "function"
               ? nodeTitle({
                   node,
                   path,
@@ -75,8 +77,8 @@ class MinimalThemeNodeContentRenderer extends Component {
           </span>
 
           {nodeSubtitle && (
-            <span className={styles.rowSubtitle}>
-              {typeof nodeSubtitle === 'function'
+            <span className={"rowSubtitle"}>
+              {typeof nodeSubtitle === "function"
                 ? nodeSubtitle({
                     node,
                     path,
@@ -87,11 +89,11 @@ class MinimalThemeNodeContentRenderer extends Component {
           )}
         </div>
 
-        <div className={styles.rowToolbar}>
+        <div className={"rowToolbar"}>
           {buttons.map((btn, index) => (
             <div
               key={index} // eslint-disable-line react/no-array-index-key
-              className={styles.toolbarButton}
+              className={"toolbarButton"}
             >
               {btn}
             </div>
@@ -101,58 +103,80 @@ class MinimalThemeNodeContentRenderer extends Component {
     );
 
     return (
-      <div style={{ height: '100%' }} {...otherProps}>
-        {toggleChildrenVisibility &&
-          node.children &&
-          (node.children.length > 0 || typeof node.children === 'function') && (
-            <div>
-              <button
-                type="button"
-                aria-label={node.expanded ? 'Collapse' : 'Expand'}
-                className={
-                  node.expanded ? styles.collapseButton : styles.expandButton
-                }
-                onClick={() =>
-                  toggleChildrenVisibility({
-                    node,
-                    path,
-                    treeIndex,
-                  })
-                }
-              />
+      <div style={{ height: "100%", position: "relative" }}>
+        <span
+          style={{
+            width: "40px",
+            position: "absolute",
+            top: 10,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            zIndex: 1001,
+          }}
+        >
+          <Checkbox
+            nativeControlId="my-checkbox"
+            checked={this.state.checked}
+            indeterminate={this.state.indeterminate}
+            onChange={(e) =>
+              this.setState({
+                checked: e.target.checked,
+                indeterminate: e.target.indeterminate,
+              })
+            }
+          />
+        </span>
+        <div style={{ height: "100%" }} {...otherProps}>
+          {toggleChildrenVisibility &&
+            node.children &&
+            (node.children.length > 0 ||
+              typeof node.children === "function") && (
+              <div>
+                <button
+                  type="button"
+                  aria-label={node.expanded ? "Collapse" : "Expand"}
+                  className={node.expanded ? "collapseButton" : "expandButton"}
+                  onClick={() =>
+                    toggleChildrenVisibility({
+                      node,
+                      path,
+                      treeIndex,
+                    })
+                  }
+                />
 
-              {node.expanded &&
-                !isDragging && (
+                {node.expanded && !isDragging && (
                   <div
                     style={{ width: scaffoldBlockPxWidth }}
-                    className={styles.lineChildren}
+                    className={"lineChildren"}
                   />
                 )}
-            </div>
-          )}
+              </div>
+            )}
 
-        <div
-          className={
-            styles.rowWrapper +
-            (!canDrag ? ` ${styles.rowWrapperDragDisabled}` : '')
-          }
-        >
           <div
             className={
-              styles.row +
-              (isLandingPadActive ? ` ${styles.rowLandingPad}` : '') +
-              (isLandingPadActive && !canDrop ? ` ${styles.rowCancelPad}` : '') +
-              (className ? ` ${className}` : '')
+              "rowWrapper" + (!canDrag ? `rowWrapperDragDisabled` : "")
             }
-            style={{
-              opacity: isDraggedDescendant ? 0.5 : 1,
-              paddingLeft: scaffoldBlockPxWidth,
-              ...style,
-            }}
           >
-            {canDrag
-              ? connectDragSource(nodeContent, { dropEffect: 'copy' })
-              : nodeContent}
+            <div
+              className={
+                "row" +
+                (isLandingPadActive ? `rowLandingPad` : "") +
+                (isLandingPadActive && !canDrop ? `rowCancelPad` : "") +
+                (className ? ` ${className}` : "")
+              }
+              style={{
+                opacity: isDraggedDescendant ? 0.5 : 1,
+                paddingLeft: scaffoldBlockPxWidth,
+                ...style,
+              }}
+            >
+              {canDrag
+                ? connectDragSource(nodeContent, { dropEffect: "copy" })
+                : nodeContent}
+            </div>
           </div>
         </div>
       </div>
@@ -164,7 +188,7 @@ MinimalThemeNodeContentRenderer.defaultProps = {
   buttons: [],
   canDrag: false,
   canDrop: false,
-  className: '',
+  className: "",
   draggedNode: null,
   icons: [],
   isSearchFocus: false,
@@ -177,7 +201,7 @@ MinimalThemeNodeContentRenderer.defaultProps = {
   swapLength: null,
   title: null,
   toggleChildrenVisibility: null,
-  rowDirection: 'ltr'
+  rowDirection: "ltr",
 };
 
 MinimalThemeNodeContentRenderer.propTypes = {
@@ -213,7 +237,7 @@ MinimalThemeNodeContentRenderer.propTypes = {
   // Drop target
   canDrop: PropTypes.bool,
   isOver: PropTypes.bool.isRequired,
-  rowDirection: PropTypes.string.isRequired
+  rowDirection: PropTypes.string.isRequired,
 };
 
 export default MinimalThemeNodeContentRenderer;

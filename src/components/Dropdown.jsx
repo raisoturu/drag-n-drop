@@ -55,7 +55,7 @@ export class Dropdown extends Component {
           open={this.state.open}
           onClose={this.onClose}
           coordinates={this.state.coordinates}
-          onSelected={(index, item) => console.log(index, item)}
+          onSelected={() => console.log("TEST")}
         >
           <MenuList>
             {menuOptions.map((option, index) => (

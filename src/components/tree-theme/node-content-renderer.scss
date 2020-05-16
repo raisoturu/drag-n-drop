@@ -47,7 +47,7 @@ $hover-padding: 3px;
 
   &::before {
     background-color: lightblue;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -98,13 +98,7 @@ $hover-padding: 3px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  &:hover {
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
-  }
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .rowLabel {
@@ -126,7 +120,7 @@ $hover-padding: 3px;
   height: 100%;
   width: 44px;
   background: #d9d9d9
-    url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PGcgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIuOSIgPjxwYXRoIGQ9Ik0xNCAxNS43aDE0LjQiLz48cGF0aCBkPSJNMTQgMjEuNGgxNC40Ii8+PHBhdGggZD0iTTE0IDI3LjFoMTQuNCIvPjwvZz4KPC9zdmc+')
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MiIgaGVpZ2h0PSI0MiI+PGcgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIuOSIgPjxwYXRoIGQ9Ik0xNCAxNS43aDE0LjQiLz48cGF0aCBkPSJNMTQgMjEuNGgxNC40Ii8+PHBhdGggZD0iTTE0IDI3LjFoMTQuNCIvPjwvZz4KPC9zdmc+")
     no-repeat center;
   border: solid #aaa 1px;
   box-shadow: 0 2px 2px -2px;
@@ -171,7 +165,7 @@ $hover-padding: 3px;
   $spin-animation-time: 800ms;
 
   &:before {
-    content: '';
+    content: "";
     display: block;
     margin: 0 auto;
     width: 11%;
@@ -193,8 +187,8 @@ $hover-padding: 3px;
     &:nth-of-type(#{$i}),
     &:nth-of-type(#{$i + $point-count / 2}) {
       &:before {
-        animation-delay: - $spin-animation-time + ($spin-animation-time /
-              $point-count * 2 * ($i - 1));
+        animation-delay: -$spin-animation-time +
+          ($spin-animation-time / $point-count * 2 * ($i - 1));
       }
     }
   }
@@ -209,14 +203,13 @@ $hover-padding: 3px;
 }
 
 .rowTitleWithSubtitle {
-  display: block;
+  color: rgb(160, 160, 160);
+  display: inline;
 }
 
 .rowSubtitle {
-  font-size: 70%;
-  line-height: 0.7;
+  margin-left: 1em;
   width: 95%;
-  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
@@ -236,18 +229,24 @@ $hover-padding: 3px;
   z-index: 1000;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  &:focus {outline:0;}
+  &:focus {
+    outline: 0;
+  }
 }
 
 .collapseButton {
   &:before {
-    content: "\25bc";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f078";
   }
 }
 
 .expandButton {
   &:before {
-    content:"\25b6";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f054";
   }
 }
 

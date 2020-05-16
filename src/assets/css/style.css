@@ -12,39 +12,14 @@
 }
 
 /* custom tree style */
-
-.rstcustom__rowContents {
-  background-color: unset;
-  -webkit-box-shadow: unset;
-  box-shadow: unset;
-}
-.rstcustom__rowContents:hover {
-  -webkit-box-shadow: unset;
-  box-shadow: unset;
-}
+/* harusnya rebuild module themenya */
 .rstcustom__node,
 .rstcustom__nodeContent {
   width: 100%;
 }
-.rstcustom__rowTitleWithSubtitle {
+.rowTitleWithSubtitle {
   color: rgb(160, 160, 160);
   display: inline;
-}
-.rstcustom__rowSubtitle {
-  margin-left: 1em;
-  font-size: unset;
-  line-height: unset;
-  overflow: unset;
-}
-.rstcustom__expandButton:before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f054";
-}
-.rstcustom__collapseButton:before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f078";
 }
 .btn-dropdown {
   border: none;
